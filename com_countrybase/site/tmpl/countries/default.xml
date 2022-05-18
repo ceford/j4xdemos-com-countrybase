@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<layout title="COM_COUNTRYBASE_VIEW_DEFAULT_MENU_LABEL" 
+		option="COM_COUNTRYBASE_VIEW_DEFAULT_OPTION">
+		<help
+			key="JHELP_MENUS_MENU_ITEM_COUNTRYBASE"
+		/>
+		<message>
+			<![CDATA[COM_COUNTRYBASE_VIEW_DEFAULT_MENU_DESC]]>
+		</message>
+	</layout>
+
+	<!-- Add fields to the parameters object for the layout. -->
+	<fields name="params">
+
+		<!-- Options -->
+		<fieldset name="options">
+		</fieldset>
+
+	</fields>
+</metadata>

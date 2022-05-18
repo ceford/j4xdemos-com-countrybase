@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade">
+	<name>countrybase</name>
+	<author>Clifford E Ford</author>
+	<authorEmail>john.doe@example.com</authorEmail>
+	<authorUrl>example.com</authorUrl>
+	<creationDate>2022-05-10</creationDate>
+	<copyright>(C) 2022 Clifford E Ford</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>0.1.0</version>
+	<description>COM_COUNTRYBASE_DESCRIPTION</description>
+	<namespace path="src">J4xdemos\Component\Countrybase</namespace>
+
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.sql</file>
+		</sql>
+	</uninstall>
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+
+	<scriptfile>script.php</scriptfile>
+
+	<media destination="com_countrybase" folder="media">
+		<file>joomla.asset.json</file>
+		<folder>css</folder>
+		<folder>js</folder>
+	</media>
+
+	<files folder="site">
+		<folder>language</folder>
+		<folder>forms</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<administration>
+		<files folder="admin">
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<folder>forms</folder>
+			<folder>help</folder>
+			<folder>language</folder>
+			<folder>layouts</folder>
+			<folder>services</folder>
+			<folder>sql</folder>
+			<folder>src</folder>
+			<folder>tmpl</folder>
+		</files>
+		<menu img="class:default">countrybase</menu>
+		<submenu>
+			<!--
+				Note that all & must be escaped to &amp; for the file to be valid
+				XML and be parsed by the installer
+			-->
+			<menu
+				link="option=com_countrybase&amp;view=countries"
+				img="default"
+			>
+				COM_COUNTRYBASE_COUNTRIES
+			</menu>
+			<menu
+				link="option=com_countrybase&amp;view=currencies"
+				img="default"
+			>
+				COM_COUNTRYBASE_CURRENCIES
+			</menu>
+		</submenu>
+	</administration>
+	<updateservers>
+		<!-- Note: No spaces or linebreaks allowed between the server tags -->
+		<server type="extension" name="Countrybase Update Site">https://raw.githubusercontent.com/yourusername/yourrepo/master/manifest.xml</server>
+	</updateservers>
+</extension>
