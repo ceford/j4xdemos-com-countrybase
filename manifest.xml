@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updates>
+    <update>
+        <name>Countrybase</name>
+        <description><![CDATA[Joomla 4 Countrybase Component]]></description>
+        <element>com_countrybase</element>
+        <type>component</type>
+        <version>0.1.0</version>
+        <client>administrator</client>
+        <infourl title="Countrybase Extension">https://github.com/ceford/j4xdemos-com-countrybase/blob/master/README.md</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/ceford/j4xdemos-com-countrybase/archive/refs/heads/master.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>dev</tag>
+        </tags>
+        <targetplatform name="joomla" version="4.[0123]" />
+    </update>
+</updates>
