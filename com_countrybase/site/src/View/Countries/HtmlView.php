@@ -44,7 +44,6 @@ class HtmlView extends BaseHtmlView
 	 */
 	protected $pagination = null;
 
-
 	/**
 	 * Form object for search filters
 	 *
@@ -73,9 +72,6 @@ class HtmlView extends BaseHtmlView
 		$this->pagination = $this->get('Pagination');
 		$this->filterForm    = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
-
-		// Flag indicates to not add limitstart=0 to URL
-		$this->pagination->hideEmptyLimitstart = true;
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))

@@ -3,7 +3,7 @@
 	<layout title="COM_COUNTRYBASE_VIEW_DEFAULT_MENU_LABEL" 
 		option="COM_COUNTRYBASE_VIEW_DEFAULT_OPTION">
 		<help
-			key="JHELP_MENUS_MENU_ITEM_COUNTRYBASE"
+			url="components/com_countrybase/help/en-GB/countrybase.html"
 		/>
 		<message>
 			<![CDATA[COM_COUNTRYBASE_VIEW_DEFAULT_MENU_DESC]]>

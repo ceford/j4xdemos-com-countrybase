@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\MVC\Controller\FormController;
 
 /**
- * Controller for a single mywalk
+ * Controller for a single record
  *
  * @since  1.6
  */

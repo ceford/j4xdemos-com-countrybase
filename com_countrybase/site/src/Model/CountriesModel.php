@@ -70,18 +70,6 @@ class CountriesModel extends ListModel
 	 */
 	protected function populateState($ordering = 'title', $direction = 'ASC')
 	{
-		$app = Factory::getApplication();
-
-		// List state information
-		$value = $app->input->get('limit', $app->get('list_limit', 0), 'uint');
-		$this->setState('list.limit', $value);
-
-		$value = $app->input->get('limitstart', 0, 'uint');
-		$this->setState('list.start', $value);
-
-		$search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
-		$this->setState('filter.search', $search);
-
 		// List state information.
 		parent::populateState($ordering, $direction);
 	}
@@ -102,10 +90,8 @@ class CountriesModel extends ListModel
 	protected function getStoreId($id = '')
 	{
 		// Compile the store id.
-		$id .= ':' . serialize($this->getState('filter.title'));
 		$id .= ':' . $this->getState('filter.search');
-		$id .= ':' . $this->getState('filter.state');
-		//$id .= ':' . serialize($this->getState('filter.tag'));
+		$id .= ':' . $this->getState('filter.published');
 
 		return parent::getStoreId($id);
 	}
