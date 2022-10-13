@@ -20,7 +20,7 @@ ALTER TABLE `#__countrybase_countries`
   ADD KEY `currency_code` (`currency_code`),
   ADD KEY `state` (`state`);
 
-INSERT INTO `x37bf_countrybase_countries` (`id`, `title`, `iso_2`, `iso_3`, `country_code`, `region_code`, `subregion_code`, `phone_prefix`, `currency_code`, `state`) VALUES
+INSERT INTO `#__countrybase_countries` (`id`, `title`, `iso_2`, `iso_3`, `country_code`, `region_code`, `subregion_code`, `phone_prefix`, `currency_code`, `state`) VALUES
 (1, 'Afghanistan', 'AF', 'AFG', '004', '142', '034', '93', 'AFN', 1),
 (2, 'Aland Islands', 'AX', 'ALA', '248', '150', '154', NULL, 'EUR', 1),
 (3, 'Albania', 'AL', 'ALB', '008', '150', '039', '355', 'ALL', 1),
