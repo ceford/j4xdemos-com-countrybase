@@ -7,7 +7,7 @@
 	<creationDate>2022-05-10</creationDate>
 	<copyright>(C) 2022 Clifford E Ford</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 	<description>COM_COUNTRYBASE_DESCRIPTION</description>
 	<namespace path="src">J4xdemos\Component\Countrybase</namespace>
 
