@@ -19,7 +19,7 @@ use Joomla\CMS\Router\Route;
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));
 
-$user      = Factory::getUser();
+$user      = Factory::getApplication()->getIdentity();
 
 ?>
 

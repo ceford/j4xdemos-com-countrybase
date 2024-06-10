@@ -1,0 +1,10 @@
+<changelogs>
+    <changelog>
+        <element>com_countrybase</element>
+        <type>component</type>
+        <version>0.1.1</version>
+        <addition>
+            <item>Added this changelog!</item>
+        </addition>
+    </changelog>
+</changelogs>

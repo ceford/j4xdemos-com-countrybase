@@ -33,19 +33,28 @@ class CountriesModel extends ListModel
 	 */
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields']))
-		{
+		if (empty($config['filter_fields'])) {
 			$config['filter_fields'] = array(
-					'id', 'a.id',
-					'title', 'a.title',
-					'iso_2', 'a.iso_2',
-					'iso_3', 'a.iso_3',
-					'country_code', 'a.country_code',
-					'region_code', 'a.region_code',
-					'state', 'a.state',
-					'subregion_code', 'a.subregion_code',
-					'phone_prefix', 'a.phone_prefix',
-					'currency_code', 'a.currency_code',
+				'id',
+				'a.id',
+				'title',
+				'a.title',
+				'iso_2',
+				'a.iso_2',
+				'iso_3',
+				'a.iso_3',
+				'country_code',
+				'a.country_code',
+				'region_code',
+				'a.region_code',
+				'state',
+				'a.state',
+				'subregion_code',
+				'a.subregion_code',
+				'phone_prefix',
+				'a.phone_prefix',
+				'currency_code',
+				'a.currency_code',
 			);
 		}
 
@@ -106,7 +115,7 @@ class CountriesModel extends ListModel
 	protected function getListQuery()
 	{
 		// Create a new query object.
-		$db    = $this->getDbo();
+		$db = $this->getDatabase();
 		$query = $db->getQuery(true);
 
 		// Select the required fields from the table.
@@ -129,14 +138,13 @@ class CountriesModel extends ListModel
 				]
 			)
 		)
-		->from($db->quoteName('#__countrybase_countries', 'a'))
-		->leftjoin($db->quoteName('#__countrybase_currencies', 'b') . 'ON a.currency_code = b.currency_code');
+			->from($db->quoteName('#__countrybase_countries', 'a'))
+			->leftjoin($db->quoteName('#__countrybase_currencies', 'b') . 'ON a.currency_code = b.currency_code');
 
 		// Filter by search in title.
 		$search = $this->getState('filter.search');
 
-		if (!empty($search))
-		{
+		if (!empty($search)) {
 			$search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
 			$query->where('(a.title LIKE ' . $search . ')');
 		}
@@ -144,18 +152,16 @@ class CountriesModel extends ListModel
 		// Filter by published state
 		$published = (string) $this->getState('filter.published');
 
-		if ($published !== '*')
-		{
-			if (is_numeric($published))
-			{
+		if ($published !== '*') {
+			if (is_numeric($published)) {
 				$state = (int) $published;
 				$query->where($db->quoteName('a.state') . ' = :state')
-				->bind(':state', $state, ParameterType::INTEGER);
+					->bind(':state', $state, ParameterType::INTEGER);
 			}
 		}
 
 		// Add the list ordering clause.
-		$orderCol  = $this->state->get('list.ordering', 'a.title');
+		$orderCol = $this->state->get('list.ordering', 'a.title');
 		$orderDirn = $this->state->get('list.direction', 'ASC');
 
 		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));

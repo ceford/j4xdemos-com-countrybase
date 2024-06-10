@@ -87,10 +87,10 @@ class HtmlView extends BaseHtmlView
 	public function display($tpl = null): void
 	{
 
-		$this->state      = $this->get('State');
-		$this->items      = $this->get('Items');
+		$this->state = $this->get('State');
+		$this->items = $this->get('Items');
 		$this->pagination = $this->get('Pagination');
-		$this->filterForm    = $this->get('FilterForm');
+		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
 
 
@@ -98,8 +98,7 @@ class HtmlView extends BaseHtmlView
 		$this->pagination->hideEmptyLimitstart = true;
 
 		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
+		if (count($errors = $this->get('Errors'))) {
 			throw new GenericDataException(implode("\n", $errors), 500);
 		}
 
@@ -124,21 +123,19 @@ class HtmlView extends BaseHtmlView
 		// Get the toolbar object instance
 		$toolbar = Toolbar::getInstance('toolbar');
 
-		$user  = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
-		if ($user->authorise('core.admin', 'com_countrybase'))
-		{
+		if ($user->authorise('core.admin', 'com_countrybase')) {
 			$toolbar->addNew('currency.add');
 		}
 
-		if ($user->authorise('core.edit.state', 'com_countrybase'))
-		{
+		if ($user->authorise('core.edit.state', 'com_countrybase')) {
 			$dropdown = $toolbar->dropdownButton('status-group')
-			->text('JTOOLBAR_CHANGE_STATUS')
-			->toggleSplit(false)
-			->icon('icon-ellipsis-h')
-			->buttonClass('btn btn-action')
-			->listCheck(true);
+				->text('JTOOLBAR_CHANGE_STATUS')
+				->toggleSplit(false)
+				->icon('icon-ellipsis-h')
+				->buttonClass('btn btn-action')
+				->listCheck(true);
 
 			$childBar = $dropdown->getChildToolbar();
 
@@ -148,30 +145,25 @@ class HtmlView extends BaseHtmlView
 
 			$childBar->archive('currencies.archive')->listCheck(true);
 
-			if ($this->state->get('filter.published') != -2)
-			{
+			if ($this->state->get('filter.published') != -2) {
 				$childBar->trash('currencies.trash')->listCheck(true);
 			}
 		}
 
-		if ($this->state->get('filter.published') == -2 && $user->authorise('core.delete', 'com_countrybase'))
-		{
+		if ($this->state->get('filter.published') == -2 && $user->authorise('core.delete', 'com_countrybase')) {
 			$toolbar->delete('currencies.delete')
-			->text('JTOOLBAR_EMPTY_TRASH')
-			->message('JGLOBAL_CONFIRM_DELETE')
-			->listCheck(true);
+				->text('JTOOLBAR_EMPTY_TRASH')
+				->message('JGLOBAL_CONFIRM_DELETE')
+				->listCheck(true);
 		}
 
-		if ($user->authorise('core.admin', 'com_countrybase') || $user->authorise('core.options', 'com_countrybase'))
-		{
+		if ($user->authorise('core.admin', 'com_countrybase') || $user->authorise('core.options', 'com_countrybase')) {
 			$toolbar->preferences('com_countrybase');
 		}
 
 		$tmpl = $app->input->getCmd('tmpl');
-		if ($tmpl !== 'component')
-		{
+		if ($tmpl !== 'component') {
 			ToolbarHelper::help('countrybase', true);
 		}
 	}
 }
-

@@ -33,16 +33,22 @@ class CurrenciesModel extends ListModel
 	 */
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields']))
-		{
+		if (empty($config['filter_fields'])) {
 			$config['filter_fields'] = array(
-					'id', 'a.id',
-					'title', 'a.title',
-					'currency_code', 'a.currency_code',
-					'symbol', 'a.symbol',
-					'numeric_code', 'a.numeric_code',
-					'dollar_exchange_rate', 'a.dollar_exchange_rate',
-					'state', 'a.state',
+				'id',
+				'a.id',
+				'title',
+				'a.title',
+				'currency_code',
+				'a.currency_code',
+				'symbol',
+				'a.symbol',
+				'numeric_code',
+				'a.numeric_code',
+				'dollar_exchange_rate',
+				'a.dollar_exchange_rate',
+				'state',
+				'a.state',
 			);
 		}
 
@@ -116,31 +122,30 @@ class CurrenciesModel extends ListModel
 	protected function getListQuery()
 	{
 		// Create a new query object.
-		$db    = $this->getDbo();
+		$db = $this->getDatabase();
 		$query = $db->getQuery(true);
 
 		// Select the required fields from the table.
 		$query->select(
-				$this->getState(
-						'list.select',
-						[
-								$db->quoteName('a.id'),
-								$db->quoteName('a.title'),
-								$db->quoteName('a.currency_code'),
-								$db->quoteName('a.symbol'),
-								$db->quoteName('a.numeric_code'),
-								$db->quoteName('a.dollar_exchange_rate'),
-								$db->quoteName('a.state'),
-						]
-						)
-				)
-				->from($db->quoteName('#__countrybase_currencies', 'a'));
+			$this->getState(
+				'list.select',
+				[
+					$db->quoteName('a.id'),
+					$db->quoteName('a.title'),
+					$db->quoteName('a.currency_code'),
+					$db->quoteName('a.symbol'),
+					$db->quoteName('a.numeric_code'),
+					$db->quoteName('a.dollar_exchange_rate'),
+					$db->quoteName('a.state'),
+				]
+			)
+		)
+			->from($db->quoteName('#__countrybase_currencies', 'a'));
 
 		// Filter by search in title.
 		$search = $this->getState('filter.search');
 
-		if (!empty($search))
-		{
+		if (!empty($search)) {
 			$search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
 			$query->where('(a.title LIKE ' . $search . ')');
 		}
@@ -148,18 +153,16 @@ class CurrenciesModel extends ListModel
 		// Filter by published state
 		$published = (string) $this->getState('filter.published');
 
-		if ($published !== '*')
-		{
-			if (is_numeric($published))
-			{
+		if ($published !== '*') {
+			if (is_numeric($published)) {
 				$state = (int) $published;
 				$query->where($db->quoteName('a.state') . ' = :state')
-				->bind(':state', $state, ParameterType::INTEGER);
+					->bind(':state', $state, ParameterType::INTEGER);
 			}
 		}
 
 		// Add the list ordering clause.
-		$orderCol  = $this->state->get('list.ordering', 'a.title');
+		$orderCol = $this->state->get('list.ordering', 'a.title');
 		$orderDirn = $this->state->get('list.direction', 'ASC');
 
 		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
